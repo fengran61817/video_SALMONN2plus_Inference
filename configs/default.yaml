@@ -1,0 +1,32 @@
+# 推理配置文件 
+model:
+  base_path: "/mnt/nvme_share/srt32/video_salmonn_workspace/video-SALMONN-2-main/video_SALMONN2_plus/qwen25_vl_base_audio_3b"
+  tokenizer_path: "/mnt/nvme_share/srt32/video_salmonn_workspace/video-SALMONN-2-main/video_SALMONN2_plus/qwen25_vl_base_audio_3b"
+  lora_path: "/mnt/nvme_share/srt32/video_salmonn_workspace/video-SALMONN-2-main/video_SALMONN2_plus/video_SALMONN2_plus_3B"
+  dtype: "bfloat16"        
+  device: "cuda:0"         
+  no_audio: false         
+  use_liger: true          
+
+generation:
+  max_new_tokens: 1024     
+  do_sample: false        
+  top_p: 0.9               
+  temperature: 0.7         
+  num_samples: 1           
+
+data:
+  # 测试数据路径
+  data_path: "/mnt/nvme_share/srt32/video_salmonn_workspace/SFT/check.json"
+  model_type: "qwen2.5vl"  # 模型类型
+  # 图像处理参数（与训练一致）
+  max_pixels: 262144       # 512*512
+  min_pixels: 65536        # 256*256
+  video_max_frame_pixels: 1304576  # 1664*28*28
+  video_min_frame_pixels: 200704   # 256*28*28
+  base_interval: 4
+  video_min_frames: 4
+  video_max_frames: 8
+
+output:
+  output_path: "/mnt/nvme_share/srt32/video_salmonn_workspace/SFT/check/new_inference_results.json"
